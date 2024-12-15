@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+// import { format } from "date-fns/fp";
+import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
@@ -12,7 +14,8 @@ const JobCard = ({ job }) => {
     >
       <div className="flex items-center justify-between">
         <span className="text-xs font-light text-gray-800 ">
-          Deadline: {deadline}
+          Deadline: {format(new Date(job.deadline), "P")}
+          {/* Deadline: {format(new Date(deadline), "P")} */}
         </span>
         <span className="px-3 py-1 text-[8px] text-blue-800 uppercase bg-blue-200 rounded-full ">
           {category}
@@ -22,7 +25,9 @@ const JobCard = ({ job }) => {
       <div>
         <h1 className="mt-2 text-lg font-semibold text-gray-800 ">{title}</h1>
 
-        <p className="mt-2 text-sm text-gray-600 ">{description}</p>
+        <p className="mt-2 text-sm text-gray-600 ">
+          {description.substring(0, 80)}...
+        </p>
         <p className="mt-2 text-sm font-bold text-gray-600 ">
           Range: ${min_price} - ${max_price}
         </p>
